@@ -11,7 +11,7 @@ module.exports = {
           "python webui.py",
         ],
         on: [{
-          "event": "/http:\/\/\\S+/",   
+          "event": "/http:\\/\\/127\\.0\\.0\\.1:\\d{2,5}$/",   
           "done": true
         }, {
           "event": "/error:/i",
