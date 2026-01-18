@@ -4,14 +4,18 @@ module.exports = {
     {
       method: "shell.run",
       params: {
-        venv: "env",
-        env: { },
+        conda: {
+          "path": "{{path.resolve(cwd, 'conda_env')}}"
+        },
+        env: {
+          "PYTHONUNBUFFERED": "1"
+        },
         path: "app",
         message: [
           "python webui.py",
         ],
         on: [{
-          "event": "/http:\\/\\/127\\.0\\.0\\.1:\\d{2,5}$/",   
+          "event": "/http:\\/\\/(?:127\\.0\\.0\\.1|localhost|0\\.0\\.0\\.0):\\d{2,5}/",
           "done": true
         }, {
           "event": "/error:/i",
@@ -25,7 +29,7 @@ module.exports = {
     {
       method: "local.set",
       params: {
-        url: "{{input.event[0]}}"
+        url: "{{input.event ? input.event[0] : ''}}"
       }
     }
   ]

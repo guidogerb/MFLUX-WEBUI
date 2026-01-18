@@ -5,7 +5,7 @@ module.exports = {
   description: "[MAC ONLY] A powerful and user-friendly web interface for FLUX, powered by MLX and Gradio via MFLUX",
   icon: "icon.png",
   menu: async (kernel, info) => {
-    let installed = info.exists("app/env")
+    let installed = info.exists("app") && info.exists("conda_env")
     let running = {
       install: info.running("install.js"),
       start: info.running("start.js"),
